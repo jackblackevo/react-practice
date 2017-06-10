@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {updateCount, deleteLang} from '../actions/appAction'
 
 class ProgramLangs extends Component {
   showLangList() {
@@ -18,5 +20,16 @@ class ProgramLangs extends Component {
     )
   }
 }
+
+const mapStateToProps = ({pLangs}) => ({
+  pLangs
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateCount: pLangUUID => dispatch(updateCount(pLangUUID)),
+  deleteLang: pLangUUID => dispatch(deleteLang(pLangUUID))
+})
+
+ProgramLangs = connect(mapStateToProps, mapDispatchToProps)(ProgramLangs)
 
 export default ProgramLangs

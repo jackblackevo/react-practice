@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import uuid from 'uuid/v1'
 
 class LangsCount extends Component {
@@ -26,5 +27,11 @@ class LangsCount extends Component {
     return <div>{this.showLangsCount()}</div>
   }
 }
+
+const mapStateToProps = ({pLangs}) => ({
+  pLangs
+})
+
+LangsCount = connect(mapStateToProps, null)(LangsCount)
 
 export default LangsCount

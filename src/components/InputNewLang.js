@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {addLang} from '../actions/appAction'
 
 class InputNewLang extends Component {
   addLang() {
@@ -18,5 +20,11 @@ class InputNewLang extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  addLang: pLangName => dispatch(addLang(pLangName))
+})
+
+InputNewLang = connect(null, mapDispatchToProps)(InputNewLang)
 
 export default InputNewLang
