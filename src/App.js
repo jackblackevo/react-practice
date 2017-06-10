@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid/v1'
 import ProgramLangs from './ProgramLangs'
 import LangsCount from './LangsCount'
+import InputNewLang from './InputNewLang'
 
 class App extends Component {
   constructor(props) {
@@ -28,11 +29,23 @@ class App extends Component {
     this.setState({pLangs: updatedPLangs})
   }
 
+  addLang(pLangName) {
+    const updatedPLangs = Object.assign({},
+      this.state.pLangs, {
+        [uuid()]: {
+          name: pLangName,
+          count: 0
+        }
+      })
+    this.setState({pLangs: updatedPLangs})
+  }
+
   render() {
     return (
       <div className="App">
         <ProgramLangs pLangs={this.state.pLangs} updateCount={pLangUUID => this.updateCount(pLangUUID)}/>
         <LangsCount pLangs={this.state.pLangs} />
+        <InputNewLang addLang={pLangName => this.addLang(pLangName)} />
       </div>
     );
   }
