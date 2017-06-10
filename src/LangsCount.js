@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class InputNewLang extends Component {
+class LangsCount extends Component {
   isShowComma(index) {
     const lastIndex = Object.keys(this.props.pLangs).length - 1
 
@@ -26,4 +26,4 @@ class InputNewLang extends Component {
   }
 }
 
-export default InputNewLang
+export default LangsCount
