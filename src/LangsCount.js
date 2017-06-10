@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
+import uuid from 'uuid/v1'
 
 class LangsCount extends Component {
   isShowComma(index) {
     const lastIndex = Object.keys(this.props.pLangs).length - 1
 
     if (index !== lastIndex) {
-      return <span>, </span>
+      return <span key={uuid()}>, </span>
     } else {
-      return <span></span>
+      return <span key={uuid()}></span>
     }
   }
 
@@ -16,7 +17,7 @@ class LangsCount extends Component {
 
     return Object.keys(pLangs).map((pLangUUID, index) => {
       return (
-        <span>{pLangs[pLangUUID].name}: {pLangs[pLangUUID].count}{this.isShowComma(index)}</span>
+        <span key={uuid()}>{pLangs[pLangUUID].name}: {pLangs[pLangUUID].count}{this.isShowComma(index)}</span>
       )
     })
   }
