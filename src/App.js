@@ -40,10 +40,15 @@ class App extends Component {
     this.setState({pLangs: updatedPLangs})
   }
 
+  deleteLang(pLangUUID) {
+    delete this.state.pLangs[pLangUUID]
+    this.setState({pLangs: this.state.pLangs})
+  }
+
   render() {
     return (
       <div className="App">
-        <ProgramLangs pLangs={this.state.pLangs} updateCount={pLangUUID => this.updateCount(pLangUUID)}/>
+        <ProgramLangs pLangs={this.state.pLangs} updateCount={pLangUUID => this.updateCount(pLangUUID)} deleteLang={pLangUUID => this.deleteLang(pLangUUID)} />
         <LangsCount pLangs={this.state.pLangs} />
         <InputNewLang addLang={pLangName => this.addLang(pLangName)} />
       </div>

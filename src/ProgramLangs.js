@@ -4,7 +4,9 @@ class ProgramLangs extends Component {
   showLangList() {
     const pLangs = this.props.pLangs
     return Object.keys(pLangs).map(pLangUUID => {
-      return <li key={pLangUUID}><span onClick={event => this.props.updateCount(pLangUUID)}>{pLangs[pLangUUID].name}</span></li>
+      return (
+        <li key={pLangUUID}><span onClick={event => this.props.updateCount(pLangUUID)}>{pLangs[pLangUUID].name}</span><button onClick={event => this.props.deleteLang(pLangUUID)}>Delete</button></li>
+      )
     })
   }
 
