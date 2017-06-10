@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import uuid from 'uuid/v1'
+import ProgramLangs from './ProgramLangs'
+import LangsCount from './LangsCount'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    
+    const pLangNames = ['JavaScript', 'Java', 'Ruby']
+
+    this.state = {
+      pLangs: pLangNames.reduce((accumulator, cValue) => {
+        accumulator[uuid()] = {name: cValue, count: 0}
+        return accumulator
+      }, {})
+    }
+  }
+
+  updateCount(pLangUUID) {
+    const updatedPLang = Object.assign({}, this.state.pLangs[pLangUUID], {
+        count: ++this.state.pLangs[pLangUUID].count
+      })
+    const updatedPLangs = Object.assign({},
+      this.state.pLangs, {
+        [pLangUUID]: updatedPLang
+      })
+    this.setState({pLangs: updatedPLangs})
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <ProgramLangs pLangs={this.state.pLangs} updateCount={pLangUUID => this.updateCount(pLangUUID)}/>
+        <LangsCount pLangs={this.state.pLangs} />
       </div>
     );
   }
