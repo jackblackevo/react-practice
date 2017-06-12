@@ -30,9 +30,10 @@ function pLangs(state = {}, action) {
     case 'DELETE_LANG':
       pLangUUID = action.pLangUUID
 
-      delete state[pLangUUID]
+      const newState = Object.assign({}, state)
+      delete newState[pLangUUID]
 
-      return state
+      return newState
     default:
       return state
   }
